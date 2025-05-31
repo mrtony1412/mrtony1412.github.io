@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Tony - Security Penetration Tester</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #00ff88;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(0,255,136,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ff88, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.8)); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #00ff88, #0099ff);
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.5);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #00ff88;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #00ff88, #0099ff);
+            margin: 1rem auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ff88, #0099ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #000;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .about-text {
+            color: #fff;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #00ff88;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 136, 0.5);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 255, 136, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Writeups Section */
+        .writeups {
+            padding: 80px 0;
+        }
+
+        .writeup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .writeup-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .writeup-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .writeup-card:hover::before {
+            left: 100%;
+        }
+
+        .writeup-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+            border-color: #00ff88;
+        }
+
+        .writeup-card h3 {
+            color: #00ff88;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .writeup-card p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .writeup-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .read-more {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #fff;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: #888;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #00ff88;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .writeup-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00ff88, #0099ff);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #0099ff, #00ff88);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Mr. Tony</div>
+            <ul class="nav-links">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#writeups">Write-ups</a></li>
+                <li><a href="about.html">Chi tiết</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Nguyễn Lê Toàn</h1>
+                    <p>Penetration Tester & Security Researcher</p>
+                    <p>Chuyên gia kiểm thử bảo mật với kinh nghiệm trong việc phát hiện và khai thác lỗ hổng bảo mật</p>
+                    <a href="#writeups" class="cta-button">Xem Write-ups</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">Giới thiệu</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="avatar">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h3>Mr. Tony - Penetration Tester</h3>
+                        <p>Chào mừng đến với trang cá nhân của tôi! Tôi là Nguyễn Lê Toàn, một chuyên gia kiểm thử bảo mật với đam mê tìm hiểu và khắc phục các lỗ hổng bảo mật trong hệ thống.</p>
+                        <p>Với kinh nghiệm trong lĩnh vực cybersecurity, tôi chuyên về penetration testing, vulnerability assessment và security research. Tôi luôn cập nhật những kỹ thuật mới nhất và chia sẻ kiến thức qua các bài write-up chi tiết.</p>
+                        <div class="skills">
+                            <span class="skill-tag">Penetration Testing</span>
+                            <span class="skill-tag">Web Application Security</span>
+                            <span class="skill-tag">Network Security</span>
+                            <span class="skill-tag">OWASP Top 10</span>
+                            <span class="skill-tag">Vulnerability Assessment</span>
+                            <span class="skill-tag">Security Research</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="writeups" class="writeups">
+            <div class="container">
+                <h2 class="section-title">Write-ups & Security Research</h2>
+                <div class="writeup-grid">
+                    <article class="writeup-card">
+                        <div class="writeup-meta">
+                            <span><i class="fas fa-calendar"></i> 2024</span>
+                            <span><i class="fas fa-tag"></i> Penetration Test</span>
+                        </div>
+                        <h3>UEH University - Security Assessment</h3>
+                        <p>Bài viết chi tiết về quá trình thực hiện penetration testing cho hệ thống của Đại học Kinh tế TP.HCM, bao gồm phương pháp tiếp cận, các lỗ hổng được phát hiện và khuyến nghị khắc phục.</p>
+                        <a href="writeups/ueh.html" class="read-more">
+                            Đọc chi tiết <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <article class="writeup-card">
+                        <div class="writeup-meta">
+                            <span><i class="fas fa-calendar"></i> Coming Soon</span>
+                            <span><i class="fas fa-tag"></i> Web Security</span>
+                        </div>
+                        <h3>Web Application Security Testing</h3>
+                        <p>Hướng dẫn chi tiết về các kỹ thuật kiểm thử bảo mật ứng dụng web, từ reconnaissance đến exploitation và post-exploitation.</p>
+                        <a href="#" class="read-more">
+                            Sắp ra mắt <i class="fas fa-clock"></i>
+                        </a>
+                    </article>
+
+                    <article class="writeup-card">
+                        <div class="writeup-meta">
+                            <span><i class="fas fa-calendar"></i> Coming Soon</span>
+                            <span><i class="fas fa-tag"></i> Network Security</span>
+                        </div>
+                        <h3>Network Penetration Testing</h3>
+                        <p>Các kỹ thuật và công cụ được sử dụng trong network penetration testing, bao gồm network scanning, enumeration và privilege escalation.</p>
+                        <a href="#" class="read-more">
+                            Sắp ra mắt <i class="fas fa-clock"></i>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/mrtony" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/mrtony" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/mrtony" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:tony@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; 2024 Nguyễn Lê Toàn (Mr. Tony). All rights reserved.</p>
+            <p>Security Researcher & Penetration Tester</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+
+        // Animate skill tags on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe writeup cards for animation
+        document.querySelectorAll('.writeup-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
