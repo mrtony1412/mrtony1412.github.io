@@ -3,55 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mr. Tony - Ethical Hacker Blog</title>
+    <title>Mr. Tony - Ethical Hacker & Security Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --bg-dark: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --accent-green: #238636;
-            --accent-blue: #1f6feb;
-            --accent-red: #da3633;
-            --accent-yellow: #f85149;
-            --border-color: #30363d;
-            --hover-bg: #30363d;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-green: #00ff88;
+            --accent-blue: #0088ff;
+            --accent-red: #ff4444;
+            --border-color: #333;
+            --shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
         }
 
-        /* Header */
+        body {
+            font-family: 'Segoe UI', Tascahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
         .header {
-            background: var(--bg-secondary);
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            padding: 1rem 0;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            padding: 1rem 0;
         }
 
-        .nav-container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
         .logo {
@@ -63,173 +65,111 @@
             color: var(--accent-green);
         }
 
-        .logo::before {
-            content: "🔒";
-            font-size: 1.8rem;
-        }
-
-        .nav-menu {
+        .nav-links {
             display: flex;
-            list-style: none;
             gap: 2rem;
+            list-style: none;
         }
 
-        .nav-menu a {
+        .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
+            font-weight: 500;
             padding: 0.5rem 1rem;
-            border-radius: 6px;
+            border-radius: 5px;
             transition: all 0.3s ease;
-            position: relative;
+            cursor: pointer;
         }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: var(--text-primary);
-            background: var(--hover-bg);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-green);
+            background: rgba(0, 255, 136, 0.1);
         }
 
-        /* Hero Section */
+        .main {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
         .hero {
-            margin-top: 80px;
-            padding: 4rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-secondary) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23238636" opacity="0.1"/><circle cx="20" cy="20" r="1" fill="%231f6feb" opacity="0.1"/><circle cx="80" cy="30" r="1.5" fill="%23da3633" opacity="0.1"/></svg>') repeat;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            padding: 4rem 0;
+            background: linear-gradient(45deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 136, 255, 0.1) 100%);
+            border-radius: 20px;
+            margin-bottom: 3rem;
         }
 
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            background: linear-gradient(45deg, var(--accent-green), var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
             font-size: 1.2rem;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 2rem;
+        .content-section {
+            display: none;
         }
 
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--accent-green);
+        .content-section.active {
             display: block;
         }
 
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .section {
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .section-title::before {
-            content: "";
-            width: 4px;
-            height: 2rem;
-            background: var(--accent-green);
-            border-radius: 2px;
-        }
-
-        /* Filter Buttons */
-        .filter-buttons {
+        .category-filters {
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
+            justify-content: center;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            padding: 0.8rem 1.5rem;
+            padding: 0.7rem 1.5rem;
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            background: var(--bg-secondary);
             color: var(--text-secondary);
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
-            position: relative;
-            overflow: hidden;
+            font-weight: 500;
         }
 
         .filter-btn:hover,
         .filter-btn.active {
             background: var(--accent-green);
-            color: var(--text-primary);
+            color: var(--bg-primary);
             border-color: var(--accent-green);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(35, 134, 54, 0.3);
+            box-shadow: var(--shadow);
         }
 
-        /* Posts Grid */
         .posts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem;
         }
 
         .post-card {
-            background: var(--bg-secondary);
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
+            border-radius: 15px;
+            padding: 2rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
         .post-card::before {
-            content: "";
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
@@ -240,7 +180,7 @@
 
         .post-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
             border-color: var(--accent-green);
         }
 
@@ -249,22 +189,22 @@
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: bold;
             margin-bottom: 1rem;
         }
 
-        .category-exploit {
-            background: rgba(248, 81, 73, 0.2);
-            color: var(--accent-yellow);
+        .category-pentest {
+            background: rgba(255, 68, 68, 0.2);
+            color: var(--accent-red);
         }
 
-        .category-defense {
-            background: rgba(35, 134, 54, 0.2);
+        .category-exploits {
+            background: rgba(0, 255, 136, 0.2);
             color: var(--accent-green);
         }
 
-        .category-pentest {
-            background: rgba(31, 111, 235, 0.2);
+        .category-defense {
+            background: rgba(0, 136, 255, 0.2);
             color: var(--accent-blue);
         }
 
@@ -274,148 +214,138 @@
             color: var(--text-primary);
         }
 
-        .post-title a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .post-title a:hover {
-            color: var(--accent-green);
+        .post-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .post-description {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .post-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .post-date {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .post-date::before {
-            content: "📅";
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--accent-green);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
 
         .read-more:hover {
             color: var(--accent-blue);
-            transform: translateX(3px);
-        }
-
-        /* About Section */
-        .about-section {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
+            transform: translateX(5px);
         }
 
         .about-content {
             display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 2rem;
-            align-items: center;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-top: 2rem;
         }
 
-        .avatar {
-            width: 120px;
-            height: 120px;
+        .about-info {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            background: linear-gradient(45deg, var(--accent-green), var(--accent-blue));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
+            font-size: 4rem;
+            color: var(--bg-primary);
+            margin: 0 auto 2rem;
         }
 
-        .about-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent-green);
+        .contact-info {
+            margin-top: 2rem;
         }
 
-        .about-text p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
+        .contact-item {
             display: flex;
+            align-items: center;
             gap: 1rem;
-        }
-
-        .social-link {
-            padding: 0.5rem;
-            background: var(--bg-tertiary);
-            border-radius: 8px;
+            margin-bottom: 1rem;
             color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s ease;
         }
 
-        .social-link:hover {
-            background: var(--accent-green);
-            color: white;
-            transform: translateY(-2px);
+        .contact-item i {
+            color: var(--accent-green);
+            width: 20px;
         }
 
-        /* Loading Animation */
-        .loading {
-            text-align: center;
+        .skills {
+            background: var(--bg-card);
             padding: 2rem;
-            color: var(--text-secondary);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
         }
 
-        .loading::before {
-            content: "⚡";
-            display: inline-block;
-            animation: spin 1s linear infinite;
-            margin-right: 0.5rem;
+        .skills h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .skill-category {
+            margin-bottom: 2rem;
         }
 
-        /* Footer */
+        .skill-category h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
         .footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 2rem;
+            padding: 2rem 0;
             text-align: center;
             color: var(--text-secondary);
             margin-top: 4rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
 
-            .nav-menu {
+        .no-posts {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
                 gap: 1rem;
             }
 
@@ -423,414 +353,324 @@
                 font-size: 2rem;
             }
 
-            .stats {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
             .about-content {
                 grid-template-columns: 1fr;
-                text-align: center;
+                gap: 2rem;
             }
 
             .posts-grid {
                 grid-template-columns: 1fr;
             }
 
-            .filter-buttons {
-                justify-content: center;
+            .container {
+                padding: 0 1rem;
             }
         }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .terminal-effect {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: var(--accent-green);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <div class="nav-container">
-            <div class="logo">Mr. Tony</div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Mr. Tony</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showSection('home')" class="nav-link active">Home</a></li>
+                    <li><a href="#" onclick="showSection('about')" class="nav-link">About</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Ethical Hacker & Security Researcher</h1>
-            <p>Chia sẻ kiến thức bảo mật, pentest reports, exploits và phương pháp defense</p>
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number" id="total-posts">0</span>
-                    <span>Bài viết</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="total-exploits">0</span>
-                    <span>Exploits</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="total-pentests">0</span>
-                    <span>Pentest Reports</span>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>Mr. Tony</h1>
+                <p>Ethical Hacker & Security Researcher | Chuyên gia bảo mật thông tin và kiểm thử xâm nhập</p>
+            </section>
 
-    <main class="main-content">
-        <section class="section" id="home">
-            <h2 class="section-title">📝 Latest Posts</h2>
-            
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Tất cả</button>
-                <button class="filter-btn" data-filter="exploit">🔓 Exploits</button>
-                <button class="filter-btn" data-filter="defense">🛡️ Defense</button>
-                <button class="filter-btn" data-filter="pentest">🔍 Pentest Logs</button>
-            </div>
+            <!-- Home Section -->
+            <section id="home" class="content-section active">
+                <div class="category-filters">
+                    <button class="filter-btn active" onclick="filterPosts('all')">Tất cả</button>
+                    <button class="filter-btn" onclick="filterPosts('pentest')">Pentest Reports</button>
+                    <button class="filter-btn" onclick="filterPosts('exploits')">Exploits</button>
+                    <button class="filter-btn" onclick="filterPosts('defense')">Defense</button>
+                </div>
 
-            <div class="posts-grid" id="posts-container">
-                <div class="loading">Đang tải bài viết...</div>
-            </div>
-        </section>
-
-        <section class="section about-section" id="about">
-            <h2 class="section-title">👤 About Me</h2>
-            <div class="about-content">
-                <div class="avatar">🧑‍💻</div>
-                <div class="about-text">
-                    <h3>Nguyễn Lê Toàn (Mr. Tony)</h3>
-                    <p>Ethical Hacker & Security Researcher với nhiều năm kinh nghiệm trong lĩnh vực bảo mật thông tin. Chuyên về penetration testing, vulnerability assessment, và phát triển các phương pháp bảo vệ hệ thống.</p>
-                    <p>Mục tiêu của tôi là chia sẻ kiến thức bảo mật để giúp cộng đồng xây dựng các hệ thống an toàn hơn.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">📧 Email</a>
-                        <a href="#" class="social-link">🐙 GitHub</a>
-                        <a href="#" class="social-link">🐦 Twitter</a>
-                        <a href="#" class="social-link">💼 LinkedIn</a>
+                <div id="posts-container">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Đang tải bài viết...</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section" id="contact">
-            <h2 class="section-title">📞 Contact</h2>
-            <div class="about-section">
-                <p><strong>Email:</strong> mrtony.security@example.com</p>
-                <p><strong>Website:</strong> https://mrtony-security.github.io</p>
-                <p><strong>Chuyên môn:</strong> Penetration Testing, Web Application Security, Network Security, Malware Analysis</p>
-                <p><strong>Disclaimer:</strong> Tất cả nội dung được chia sẻ chỉ nhằm mục đích giáo dục và nghiên cứu bảo mật. Vui lòng sử dụng có trách nhiệm và tuân thủ pháp luật.</p>
-            </div>
-        </section>
+            <!-- About Section -->
+            <section id="about" class="content-section">
+                <div class="about-content">
+                    <div class="about-info">
+                        <div class="profile-img">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h2>Nguyễn Lê Toàn</h2>
+                        <p><strong>Alias:</strong> Mr. Tony</p>
+                        <p>Ethical Hacker & Security Researcher với nhiều năm kinh nghiệm trong lĩnh vực bảo mật thông tin. Chuyên về kiểm thử xâm nhập, phân tích lỗ hổng bảo mật và xây dựng hệ thống phòng thủ.</p>
+
+                        <div class="contact-info">
+                            <h3 style="color: var(--accent-green); margin-bottom: 1rem;">Liên hệ</h3>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>mrtony1412@gmail.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub Portfolio</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-globe"></i>
+                                <span>Security Blog</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills">
+                        <h3>Chuyên môn & Kỹ năng</h3>
+                        
+                        <div class="skill-category">
+                            <h4>Penetration Testing</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Web Application Testing</span>
+                                <span class="skill-tag">Network Penetration</span>
+                                <span class="skill-tag">Mobile App Security</span>
+                                <span class="skill-tag">API Security Testing</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h4>Security Tools</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Burp Suite</span>
+                                <span class="skill-tag">OWASP ZAP</span>
+                                <span class="skill-tag">Metasploit</span>
+                                <span class="skill-tag">Nmap</span>
+                                <span class="skill-tag">Wireshark</span>
+                                <span class="skill-tag">Nessus</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h4>Programming & Scripting</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Bash</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">PowerShell</span>
+                                <span class="skill-tag">SQL</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h4>Security Frameworks</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">OWASP Top 10</span>
+                                <span class="skill-tag">NIST Framework</span>
+                                <span class="skill-tag">ISO 27001</span>
+                                <span class="skill-tag">PTES</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2025 Mr. Tony - Ethical Hacking Blog. All rights reserved.</p>
-        <p>🔒 Security • 🛡️ Ethics • 📚 Education</p>
+        <div class="container">
+            <p>&copy; 2025 Mr. Tony - Ethical Hacker. All rights reserved.</p>
+            <p>Dedicated to making the internet a safer place through responsible security research.</p>
+        </div>
     </footer>
 
     <script>
-        // Configuration
-        const CONFIG = {
-            postsPerPage: 12,
-            autoScanInterval: 30000, // 30 seconds
-            categories: {
-                exploit: { name: 'Exploits', icon: '🔓', folder: 'exploits' },
-                defense: { name: 'Defense', icon: '🛡️', folder: 'defense' },
-                pentest: { name: 'Pentest Logs', icon: '🔍', folder: 'pentest-logs' }
-            }
-        };
-
-        // Global state
+        // Global variables
         let allPosts = [];
         let currentFilter = 'all';
 
-        // DOM elements
-        const postsContainer = document.getElementById('posts-container');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeNavigation();
-            scanForPosts();
-            setupFilterButtons();
-            setupScrollAnimations();
-            
-            // Auto-scan for new posts
-            setInterval(scanForPosts, CONFIG.autoScanInterval);
-        });
-
-        // Navigation
-        function initializeNavigation() {
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = this.getAttribute('href').substring(1);
-                    
-                    // Update active nav
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Smooth scroll to section
-                    document.getElementById(target).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
             });
+            
+            // Show selected section
+            document.getElementById(sectionName).classList.add('active');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
         }
 
-        // Scan for posts in directories
-        async function scanForPosts() {
+        // Post loading and filtering functions
+        async function loadPosts() {
+            const categories = ['pentest-logs', 'exploits', 'defense'];
             allPosts = [];
-            
-            try {
-                // Scan each category folder
-                for (const [key, category] of Object.entries(CONFIG.categories)) {
-                    await scanCategory(key, category.folder);
-                }
-                
-                // Sort posts by date (newest first)
-                allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                
-                updateStats();
-                renderPosts();
-                
-            } catch (error) {
-                console.error('Error scanning posts:', error);
-                showError('Không thể tải danh sách bài viết');
-            }
-        }
 
-        // Scan specific category folder
-        async function scanCategory(categoryKey, folderName) {
-            // Since we can't actually scan directories in a static site,
-            // we'll try to load a manifest file or use a predefined list
-            const commonFilenames = [
-                'index.html', 'post1.html', 'post2.html', 'post3.html',
-                'latest.html', 'example.html', 'demo.html'
-            ];
-            
-            for (const filename of commonFilenames) {
+            for (const category of categories) {
                 try {
-                    const response = await fetch(`posts/${folderName}/${filename}`);
-                    if (response.ok) {
-                        const html = await response.text();
-                        const postData = extractPostMetadata(html, categoryKey, `posts/${folderName}/${filename}`);
-                        if (postData) {
-                            allPosts.push(postData);
-                        }
-                    }
+                    const posts = await scanDirectory(`posts/${category}`);
+                    allPosts.push(...posts);
                 } catch (error) {
-                    // File doesn't exist, continue
-                    continue;
+                    console.warn(`Could not load posts from ${category}:`, error);
                 }
             }
+
+            // Sort posts by date (newest first)
+            allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            displayPosts(allPosts);
         }
 
-        // Extract metadata from HTML file
-        function extractPostMetadata(html, category, filepath) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            
-            // Extract title
-            const title = doc.querySelector('title')?.textContent || 
-                         doc.querySelector('h1')?.textContent || 
-                         doc.querySelector('meta[name="title"]')?.content ||
-                         'Untitled Post';
-            
-            // Extract description
-            const description = doc.querySelector('meta[name="description"]')?.content ||
-                              doc.querySelector('meta[property="og:description"]')?.content ||
-                              doc.querySelector('p')?.textContent?.substring(0, 150) + '...' ||
-                              'No description available';
-            
-            // Extract date
-            const dateStr = doc.querySelector('meta[name="date"]')?.content ||
-                           doc.querySelector('meta[name="published"]')?.content ||
-                           doc.querySelector('.post-date')?.textContent ||
-                           new Date().toISOString().split('T')[0];
-            
-            // Extract author
-            const author = doc.querySelector('meta[name="author"]')?.content || 'Mr. Tony';
-            
-            return {
-                title: title.trim(),
-                description: description.trim(),
-                date: dateStr,
-                author: author,
-                category: category,
-                filepath: filepath,
-                id: filepath.replace(/[^a-zA-Z0-9]/g, '-')
+        async function scanDirectory(path) {
+            // In a real GitHub Pages environment, you would need to maintain a posts index
+            // For now, we'll create some sample posts to demonstrate the functionality
+            return getSamplePosts(path);
+        }
+
+        function getSamplePosts(path) {
+            const samplePosts = {
+                'posts/pentest-logs': [
+                    {
+                        title: 'Penetration Test Report - E-commerce Website',
+                        description: 'Comprehensive security assessment of a major e-commerce platform revealing critical vulnerabilities in payment processing and user authentication.',
+                        date: '2025-05-28',
+                        category: 'pentest',
+                        path: 'posts/pentest-logs/ecommerce-pentest-2025.html',
+                        author: 'Mr. Tony'
+                    },
+                    {
+                        title: 'Banking Application Security Assessment',
+                        description: 'Deep dive into mobile banking application security, identifying potential attack vectors and providing remediation strategies.',
+                        date: '2025-05-25',
+                        category: 'pentest',
+                        path: 'posts/pentest-logs/banking-app-assessment.html',
+                        author: 'Mr. Tony'
+                    }
+                ],
+                'posts/exploits': [
+                    {
+                        title: 'SQL Injection in Modern Web Applications',
+                        description: 'Advanced techniques for identifying and exploiting SQL injection vulnerabilities in contemporary web frameworks.',
+                        date: '2025-05-30',
+                        category: 'exploits',
+                        path: 'posts/exploits/advanced-sql-injection.html',
+                        author: 'Mr. Tony'
+                    },
+                    {
+                        title: 'XSS Bypass Techniques for WAF Protection',
+                        description: 'Methods to circumvent Web Application Firewall filters and execute successful cross-site scripting attacks.',
+                        date: '2025-05-26',
+                        category: 'exploits',
+                        path: 'posts/exploits/xss-waf-bypass.html',
+                        author: 'Mr. Tony'
+                    }
+                ],
+                'posts/defense': [
+                    {
+                        title: 'Implementing Zero Trust Architecture',
+                        description: 'Comprehensive guide to designing and implementing Zero Trust security model in enterprise environments.',
+                        date: '2025-05-29',
+                        category: 'defense',
+                        path: 'posts/defense/zero-trust-implementation.html',
+                        author: 'Mr. Tony'
+                    },
+                    {
+                        title: 'Advanced IDS/IPS Configuration',
+                        description: 'Best practices for configuring Intrusion Detection and Prevention Systems for maximum security coverage.',
+                        date: '2025-05-24',
+                        category: 'defense',
+                        path: 'posts/defense/advanced-ids-config.html',
+                        author: 'Mr. Tony'
+                    }
+                ]
             };
+
+            return samplePosts[path] || [];
         }
 
-        // Create sample posts for demonstration
-        function createSamplePosts() {
-            const samplePosts = [
-                {
-                    title: "SQL Injection trong Web Application",
-                    description: "Hướng dẫn chi tiết cách khai thác và phòng chống SQL Injection attacks trong các ứng dụng web hiện đại.",
-                    date: "2025-05-30",
-                    author: "Mr. Tony",
-                    category: "exploit",
-                    filepath: "posts/exploits/sql-injection-guide.html",
-                    id: "sql-injection-guide"
-                },
-                {
-                    title: "Pentest Report: E-commerce Platform",
-                    description: "Báo cáo đầy đủ về quá trình penetration testing một nền tảng thương mại điện tử, bao gồm các lỗ hổng được phát hiện và khuyến nghị.",
-                    date: "2025-05-28",
-                    author: "Mr. Tony",
-                    category: "pentest",
-                    filepath: "posts/pentest-logs/ecommerce-pentest.html",
-                    id: "ecommerce-pentest"
-                },
-                {
-                    title: "Implementing WAF Rules",
-                    description: "Cách thiết lập và cấu hình Web Application Firewall để bảo vệ ứng dụng web khỏi các cuộc tấn công phổ biến.",
-                    date: "2025-05-25",
-                    author: "Mr. Tony",
-                    category: "defense",
-                    filepath: "posts/defense/waf-implementation.html",
-                    id: "waf-implementation"
-                },
-                {
-                    title: "XSS Exploitation Techniques",
-                    description: "Các kỹ thuật khai thác Cross-Site Scripting (XSS) tiên tiến và cách bypass các bộ lọc bảo mật.",
-                    date: "2025-05-22",
-                    author: "Mr. Tony",
-                    category: "exploit",
-                    filepath: "posts/exploits/xss-techniques.html",
-                    id: "xss-techniques"
-                },
-                {
-                    title: "Network Segmentation Best Practices",
-                    description: "Hướng dẫn thiết kế và triển khai network segmentation để giảm thiểu rủi ro bảo mật trong môi trường doanh nghiệp.",
-                    date: "2025-05-20",
-                    author: "Mr. Tony",
-                    category: "defense",
-                    filepath: "posts/defense/network-segmentation.html",
-                    id: "network-segmentation"
-                },
-                {
-                    title: "Banking Application Security Assessment",
-                    description: "Đánh giá bảo mật toàn diện cho ứng dụng ngân hàng, bao gồm mobile app và web portal.",
-                    date: "2025-05-18",
-                    author: "Mr. Tony",
-                    category: "pentest",
-                    filepath: "posts/pentest-logs/banking-assessment.html",
-                    id: "banking-assessment"
-                }
-            ];
+        function displayPosts(posts) {
+            const container = document.getElementById('posts-container');
             
-            allPosts = samplePosts;
-        }
-
-        // Update statistics
-        function updateStats() {
-            const totalPosts = allPosts.length;
-            const totalExploits = allPosts.filter(p => p.category === 'exploit').length;
-            const totalPentests = allPosts.filter(p => p.category === 'pentest').length;
-            
-            animateCounter('total-posts', totalPosts);
-            animateCounter('total-exploits', totalExploits);
-            animateCounter('total-pentests', totalPentests);
-        }
-
-        // Animate counter
-        function animateCounter(elementId, targetValue) {
-            const element = document.getElementById(elementId);
-            const currentValue = parseInt(element.textContent) || 0;
-            const increment = Math.ceil(targetValue / 20);
-            
-            let current = currentValue;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= targetValue) {
-                    current = targetValue;
-                    clearInterval(timer);
-                }
-                element.textContent = current;
-            }, 50);
-        }
-
-        // Setup filter buttons
-        function setupFilterButtons() {
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Update filter
-                    currentFilter = this.dataset.filter;
-                    renderPosts();
-                });
-            });
-        }
-
-        // Render posts
-        function renderPosts() {
-            if (allPosts.length === 0) {
-                createSamplePosts(); // Use sample data if no posts found
-            }
-            
-            const filteredPosts = currentFilter === 'all' 
-                ? allPosts 
-                : allPosts.filter(post => post.category === currentFilter);
-            
-            if (filteredPosts.length === 0) {
-                postsContainer.innerHTML = '<div class="loading">Không có bài viết nào được tìm thấy.</div>';
+            if (posts.length === 0) {
+                container.innerHTML = `
+                    <div class="no-posts">
+                        <i class="fas fa-search"></i>
+                        <p>Chưa có bài viết nào trong danh mục này.</p>
+                        <p>Hãy thêm bài viết mới vào thư mục tương ứng!</p>
+                    </div>
+                `;
                 return;
             }
-            
-            const postsHTML = filteredPosts.map(post => createPostCard(post)).join('');
-            postsContainer.innerHTML = postsHTML;
-            
-            // Add scroll animations
-            setTimeout(() => {
-                const cards = document.querySelectorAll('.post-card');
-                cards.forEach((card, index) => {
-                    card.style.animationDelay = `${index * 0.1}s`;
-                    card.classList.add('fade-in');
-                });
-            }, 100);
-        }
 
-        // Create post card HTML
-        function createPostCard(post) {
-            const categoryInfo = CONFIG.categories[post.category];
-            const categoryClass = `category-${post.category}`;
-            const categoryLabel = categoryInfo ? `${categoryInfo.icon} ${categoryInfo.name}` : post.category;
-            
-            return `
-                <article class="post-card fade-in">
-                    <div class="post-category ${categoryClass}">${categoryLabel}</div>
-                    <h3 class="post-title">
-                        <a href="${post.filepath}" target="_blank">${post.title}</a>
-                    </h3>
-                    <p class="post-description">${post.description}</p>
+            const postsHTML = posts.map(post => `
+                <article class="post-card" data-category="${post.category}">
+                    <span class="post-category category-${post.category}">
+                        ${getCategoryName(post.category)}
+                    </span>
+                    <h2 class="post-title">${post.title}</h2>
                     <div class="post-meta">
-                        <span class="post-date">${formatDate(post.date)}</span>
-                        <a href="${post.filepath}" class="read-more" target="_blank">Đọc thêm →</a>
+                        <i class="fas fa-calendar-alt"></i> ${formatDate(post.date)}
+                        <span style="margin: 0 1rem;">•</span>
+                        <i class="fas fa-user"></i> ${post.author}
                     </div>
+                    <p class="post-description">${post.description}</p>
+                    <a href="${post.path}" class="read-more">
+                        Đọc thêm <i class="fas fa-arrow-right"></i>
+                    </a>
                 </article>
-            `;
+            `).join('');
+
+            container.innerHTML = `<div class="posts-grid">${postsHTML}</div>`;
         }
 
-        // Format date
+        function filterPosts(category) {
+            currentFilter = category;
+            
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter and display posts
+            const filteredPosts = category === 'all' ? allPosts : allPosts.filter(post => post.category === category);
+            displayPosts(filteredPosts);
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                'pentest': 'Pentest Reports',
+                'exploits': 'Exploits',
+                'defense': 'Defense Techniques'
+            };
+            return names[category] || category;
+        }
+
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('vi-VN', {
@@ -840,85 +680,12 @@
             });
         }
 
-        // Show error message
-        function showError(message) {
-            postsContainer.innerHTML = `
-                <div class="loading" style="color: var(--accent-red);">
-                    ❌ ${message}
-                </div>
-            `;
-        }
+        // Initialize the website
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPosts();
+        });
 
-        // Setup scroll animations
-        function setupScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe elements with fade-in class
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Utility functions
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Search functionality
-        function setupSearch() {
-            const searchInput = document.getElementById('search-input');
-            if (!searchInput) return;
-            
-            const debouncedSearch = debounce((query) => {
-                if (query.length < 2) {
-                    renderPosts();
-                    return;
-                }
-                
-                const filteredPosts = allPosts.filter(post => 
-                    post.title.toLowerCase().includes(query.toLowerCase()) ||
-                    post.description.toLowerCase().includes(query.toLowerCase())
-                );
-                
-                renderFilteredPosts(filteredPosts);
-            }, 300);
-            
-            searchInput.addEventListener('input', (e) => {
-                debouncedSearch(e.target.value);
-            });
-        }
-
-        // Render filtered posts
-        function renderFilteredPosts(posts) {
-            if (posts.length === 0) {
-                postsContainer.innerHTML = '<div class="loading">Không tìm thấy bài viết phù hợp.</div>';
-                return;
-            }
-            
-            const postsHTML = posts.map(post => createPostCard(post)).join('');
-            postsContainer.innerHTML = postsHTML;
-        }
-
-        // Smooth scrolling for anchor links
+        // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -931,33 +698,6 @@
                 }
             });
         });
-
-        // Handle mobile menu toggle
-        function setupMobileMenu() {
-            const mobileToggle = document.getElementById('mobile-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            if (mobileToggle && navMenu) {
-                mobileToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('mobile-open');
-                    mobileToggle.classList.toggle('active');
-                });
-            }
-        }
-
-        // Initialize all features
-        function initializeApp() {
-            setupSearch();
-            setupMobileMenu();
-            
-            // Add loading state management
-            window.addEventListener('beforeunload', () => {
-                postsContainer.innerHTML = '<div class="loading">Đang tải...</div>';
-            });
-        }
-
-        // Call initialization
-        initializeApp();
     </script>
 </body>
 </html>
