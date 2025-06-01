@@ -404,7 +404,7 @@
             <!-- Home Section -->
             <section id="home" class="content-section active">
                 <div class="category-filters">
-                    <button class="filter-btn active" onclick="filterPosts('all')">Tất cả</button>
+                    <button class="filter-btn active" onclick="filterPosts('all')">All</button>
                     <button class="filter-btn" onclick="filterPosts('pentest')">Pentest Reports</button>
                     <button class="filter-btn" onclick="filterPosts('exploits')">Exploits</button>
                     <button class="filter-btn" onclick="filterPosts('defense')">Defense</button>
@@ -413,7 +413,7 @@
                 <div id="posts-container">
                     <div class="loading">
                         <i class="fas fa-spinner fa-spin"></i>
-                        <p>Đang tải bài viết...</p>
+                        <p>Loading article...</p>
                     </div>
                 </div>
             </section>
@@ -427,23 +427,23 @@
                         </div>
                         <h2>Nguyễn Lê Toàn</h2>
                         <p><strong>Alias:</strong> Mr. Tony</p>
-                        <p>Ethical Hacker & Security Researcher chuyên về kiểm thử xâm nhập, phân tích lỗ hổng bảo mật và xây dựng hệ thống phòng thủ.</p>
+                        <p>Ethical Hacker & Security Researcher specializing in penetration testing, vulnerability analysis and remediation recommendations.</p>
 
                         <div class="contact-info">
                             <h3 style="color: var(--accent-green); margin-bottom: 1rem;">Liên hệ</h3>
                             <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
-                                <span>mrtony1412@gmail.com</span>
+                                <span>Email: mrtony1412@gmail.com</span>
                             </div>
                             <div class="contact-item">
                                 <i class="fas fa-phone-alt"></i>
-                                <span>0396333864</span>
+                                <span>Phone/Zalo: 0396333864</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="skills">
-                        <h3>Chuyên môn & Kỹ năng</h3>
+                        <h3>Expertise & Skills</h3>
                         
                         <div class="skill-category">
                             <h4>Penetration Testing</h4>
@@ -540,16 +540,16 @@
             const samplePosts = {
                 'posts/pentest-logs': [
                     {
-                        title: 'Báo cáo Kiểm thử Bảo mật - Hệ thống UEH',
-                        description: 'Phát hiện các lỗ hổng bảo mật nghiêm trọng trên hệ thống Đại học Kinh tế TP.HCM, bao gồm rò rỉ log giao dịch ngân hàng, lộ file backup và LDAP anonymous access. Báo cáo đã được gửi và nhận phản hồi tích cực từ UEH.',
+                        title: 'Security Testing Report - UEH System',
+                        description: 'Developed serious security holes on the Ho Chi Minh City University of Economics system, including bank transaction log leaks, display file backups, and LDAP anonymous access. Reports were submitted and received positive feedback from UEH.',
                         date: '2025-05-28',
                         category: 'pentest',
                         path: 'posts/pentest-logs/ueh.html',
                         author: 'Mr. Tony'
                     },
                     {
-                        title: 'Báo cáo Kiểm thử Bảo mật - Hệ thống USTH',
-                        description: 'Đang viết bài',
+                        title: 'Security Testing Report - USTH System',
+                        description: 'Write articles',
                         date: '2025-05-28',
                         category: 'pentest',
                         path: 'posts/pentest-logs/usth.html',
@@ -568,7 +568,7 @@
                 container.innerHTML = `
                     <div class="no-posts">
                         <i class="fas fa-search"></i>
-                        <p>Chưa có bài viết nào trong danh mục này.</p>
+                        <p>There are no posts in this category yet.</p>
                     </div>
                 `;
                 return;
