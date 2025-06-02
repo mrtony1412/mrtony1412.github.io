@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tascahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 100%);
             color: var(--text-primary);
             line-height: 1.6;
@@ -405,7 +405,7 @@
             <section id="home" class="content-section active">
                 <div class="category-filters">
                     <button class="filter-btn active" onclick="filterPosts('all')">All</button>
-                    <button class="filter-btn" onclick="filterPosts('pentest')">Pentest Reports</button>
+                    <button class="filter-btn" onclick="filterPosts('pentest')">Penetration Testing</button>
                     <button class="filter-btn" onclick="filterPosts('exploits')">Exploits</button>
                     <button class="filter-btn" onclick="filterPosts('defense')">Defense</button>
                 </div>
@@ -413,7 +413,7 @@
                 <div id="posts-container">
                     <div class="loading">
                         <i class="fas fa-spinner fa-spin"></i>
-                        <p>Loading article...</p>
+                        <p>Loading articles...</p>
                     </div>
                 </div>
             </section>
@@ -427,10 +427,10 @@
                         </div>
                         <h2>Nguyen Le Toan</h2>
                         <p><strong>Alias:</strong> Mr. Tony</p>
-                        <p>Ethical Hacker & Security Researcher specializing in penetration testing, vulnerability analysis and remediation recommendations.</p>
+                        <p>Ethical Hacker and Security Researcher specializing in penetration testing, vulnerability analysis, and security remediation recommendations.</p>
 
                         <div class="contact-info">
-                            <h3 style="color: var(--accent-green); margin-bottom: 1rem;">Contact</h3>
+                            <h3 style="color: var(--accent-green); margin-bottom: 1rem;">Contact Information</h3>
                             <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
                                 <span>Email: mrtony1412@gmail.com</span>
@@ -540,16 +540,16 @@
             const samplePosts = {
                 'posts/pentest-logs': [
                     {
-                        title: 'Security Testing Report - UEH System',
-                        description: 'Developed serious security holes on the Ho Chi Minh City University of Economics system, including bank transaction log leaks, display file backups, and LDAP anonymous access. Reports were submitted and received positive feedback from UEH.',
+                        title: 'Security Assessment Report - UEH System',
+                        description: 'Identified critical security vulnerabilities in the University of Economics Ho Chi Minh City system, including transaction log exposure, file backup disclosure, and LDAP anonymous access. The comprehensive report was submitted and received positive acknowledgment from UEH administration.',
                         date: '2025-05-27',
                         category: 'pentest',
                         path: 'posts/pentest-logs/ueh.html',
                         author: 'Mr. Tony'
                     },
                     {
-                        title: 'Security Testing Report - USTH System',
-                        description: 'Will update fully later',
+                        title: 'Security Assessment Report - USTH System',
+                        description: 'Comprehensive security testing of University of Science and Technology of Hanoi infrastructure. Full report documentation in progress.',
                         date: '2025-05-29',
                         category: 'pentest',
                         path: 'posts/pentest-logs/usth.html',
@@ -568,7 +568,7 @@
                 container.innerHTML = `
                     <div class="no-posts">
                         <i class="fas fa-search"></i>
-                        <p>There are no posts in this category yet.</p>
+                        <p>No posts available in this category yet.</p>
                     </div>
                 `;
                 return;
@@ -611,7 +611,7 @@
 
         function getCategoryName(category) {
             const names = {
-                'pentest': 'Pentest Reports',
+                'pentest': 'Penetration Testing',
                 'exploits': 'Exploits',
                 'defense': 'Defense Techniques'
             };
@@ -620,7 +620,7 @@
 
         function formatDate(dateString) {
             const date = new Date(dateString);
-            return date.toLocaleDateString('en-EN', {
+            return date.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
